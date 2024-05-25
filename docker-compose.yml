@@ -1,0 +1,23 @@
+# Una imagen de Jenkins configurada automáticamente con JCasC, con los plugins recomendados por
+# la comunidad instalados, configuraciones básicas de autorización aplicadas, y una pipeline
+# definida.
+
+services:
+  servidor-jenkins:
+    build:
+      context: ./imagen-jenkins
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    hostname: servidor-jenkins
+#    environment:
+       #- JENKINS_NOMBRE_ADMINISTRADOR=nombre-administrador
+       # lógicamente, no deberías escribir la contraseña en texto plano, sino usar una variable 
+       # de entorno
+       #- JENKINS_PASSWORD_ADMINISTRADOR=${PASSWORD_ADMINISTRADOR}
+    networks:
+      - red-1
+
+networks:
+  red-1:
+    driver: bridge
